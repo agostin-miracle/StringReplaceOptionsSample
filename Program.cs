@@ -24,21 +24,7 @@ namespace ConsoleApp2
             var obj = new ChangeText();
             var changes = obj.CreateChanges(frase);
 
-            //List<ChangeWords> changes = new List<ChangeWords>();
-            //string[] palavras = frase.Split(' ');
-            //foreach (string palavra in palavras)
-            //{
-            //    if (palavra.Contains("<b>") && palavra.Contains("</b>"))
-            //        changes.Add(new ChangeWords { Text = ReplaceTag("b",palavra), Type = 1 });
-            //    if (palavra.Contains("<i>") && palavra.Contains("</i>"))
-            //        changes.Add(new ChangeWords { Text = ReplaceTag("i", palavra), Type = 2 });
-            //    if (palavra.Contains("<strong>") && palavra.Contains("</strong>"))
-            //        changes.Add(new ChangeWords { Text = ReplaceTag("strong", palavra), Type = 3 });
-            //    if (palavra.Contains("<em>") && palavra.Contains("</em>"))
-            //        changes.Add(new ChangeWords { Text = ReplaceTag("em", palavra), Type = 4 });
-
-            //}
-
+     
             /*
              * Lista as possiveis mudanças
              */
@@ -94,30 +80,6 @@ namespace ConsoleApp2
         }
 
 
-        //static string ReplaceTag(string[] tag, string text)
-        //{
-        //    if (tag.Length>0)
-        //    {
-        //        foreach (string s in tag)
-        //        {
-        //            text = ReplaceTag(s, text);
-        //            //text = text.Replace(string.Format("<{0}>", s), "");
-        //            //text = text.Replace(string.Format("</{0}>", s), "");
-        //        }
-
-        //    }
-        //    return text;
-        //}
-
-        //static string ReplaceTag (string tag, string text)
-        //{
-        //    if (!string.IsNullOrEmpty(tag))
-        //    {
-        //        text = text.Replace(string.Format("<{0}>", tag), "");
-        //        text = text.Replace(string.Format("</{0}>", tag), "");
-        //    }
-        //    return text;
-        //}
 
     }
 
@@ -149,11 +111,15 @@ namespace ConsoleApp2
     }
 
 
-
+    /// <summary>
+    /// Retem o processamento de substituição de Tags
+    /// </summary>
     public class ChangeText
     {
 
-
+        /// <summary>
+        /// Anota as Tag a serem substituidas de acordo com o seu Tipo
+        /// </summary>
         List<ChangeWords> Changes { get; set; } = new List<ChangeWords>();
 
 
@@ -179,7 +145,12 @@ namespace ConsoleApp2
             return this.Changes;
         }
 
-
+        /// <summary>
+        /// Efetua a substituilçao de uma array de Tags
+        /// </summary>
+        /// <param name="tag">Array de Tags</param>
+        /// <param name="text">String alvo de substituição</param>
+        /// <returns>String com substituições</returns>
         public string ReplaceTag(string[] tag, string text)
         {
             if (tag.Length > 0)
@@ -187,14 +158,17 @@ namespace ConsoleApp2
                 foreach (string s in tag)
                 {
                     text = ReplaceTag(s, text);
-                    //text = text.Replace(string.Format("<{0}>", s), "");
-                    //text = text.Replace(string.Format("</{0}>", s), "");
                 }
 
             }
             return text;
         }
-
+        /// <summary>
+        ///  Efetua a substituilçao de uma Tag
+        /// </summary>
+        /// <param name="tag">Tag</param>
+        /// <param name="text">String alvo de substituição</param>
+        /// <returns>String com substituições</returns>
         public string ReplaceTag(string tag, string text)
         {
             if (!string.IsNullOrEmpty(tag))
